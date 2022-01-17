@@ -1,16 +1,13 @@
 # psae-partner-training-jan-2022
 
-# The Flower App 1
+# The Flower App 2
 
-Sally runs a flower shop. She wants to use odoo in order to run her daily tasks smoothly. 
-This store grows its own flowers in a garden nearby. 
+Sally is now ready to sell her flowers. Modify the app you have previously written for her in a way that
+enables her to be able to use the flowers within sale order lines.
 
-Those flowers have a set of different attributes. Help Sally by creating an app that includes 
-a list of flowers.
+Note that Sally wants to sell flowers and only flowers.
 
-Each flower has the following attributes:
-- Common Name
-- Scientific Name
-- Season (Hint: use 2 date fields)
-- Watering frequency (Example: Watering frequency = 3 ==> should be watered once every 3 days)
-- Watering amount (In milliliters)
+# The Flower App 3 (OPTIONAL)
+
+Sally discovered that she could sell her flowers online. Edit the appropriate template to add the additional 
+flower fields to the website
