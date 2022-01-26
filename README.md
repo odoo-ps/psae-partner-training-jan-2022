@@ -1,13 +1,19 @@
 # psae-partner-training-jan-2022
 
-# The Flower App 2
+# The Flower App 4
 
-Sally is now ready to sell her flowers. Modify the app you have previously written for her in a way that
-enables her to be able to use the flowers within sale order lines.
+Sally came back to you with an additional request. Her business has been more successful than ever 
+and she's been running out of stock more frequently. 
 
-Note that Sally wants to sell flowers and only flowers.
+Therefore, she decided to start planting more flowers. This made it hard for her to keep track of 
+watering times. Sally now wants to track every flower she has planted using serial numbers. Additionally, 
+she wants to have a list tracking all the watering she have done.
 
-# The Flower App 3 (OPTIONAL)
-
-Sally discovered that she could sell her flowers online. Edit the appropriate template to add the additional 
-flower fields to the website
+Hints:
+  * find the model responsible for serial numbers
+  * add a button that uses a window action to show the user all stock.quant records that are linked to this product
+  * create a new model for tracking watering flower.water
+  * implement some mechanism on stock.quant to know when this quant was watered (maybe a computed field?)
+  * add a button on stock.quant to create and link a new record of flower.water (Use fields.Date.today())
+  * add a constraint on stock.quant to prevent the user from watering before they're supposed to (compare the last watering date with the watering frequency)
+  * for more convenience, add a server action that automatically attempts to water all selected plants in a list view
