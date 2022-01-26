@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-
-# noinspection PyUnresolvedReferences
-
 from odoo import models, fields
 
 
