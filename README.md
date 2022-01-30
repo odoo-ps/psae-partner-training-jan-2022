@@ -1,18 +1,13 @@
 # psae-partner-training-jan-2022
 
-# The Flower App 4
+# The Flower App 5
 
-Sally came back to you with an additional request. Her business has been more successful than ever 
-and she's been running out of stock more frequently. 
+Sally have now wants to print a small booklet containing infomation about the flowers she's selling. 
 
-Therefore, she decided to start planting more flowers. This made it hard for her to keep track of 
-watering times. Sally now wants to track every flower she has planted using serial numbers. Additionally, 
-she wants to have a list tracking all the watering she have done.
+Create a report on sale.order that compiles the information of each flower present in the current order. 
 
-Hints:
-  * find the model responsible for serial numbers
-  * create a new model for tracking watering flower.water
-  * implement some mechanism on stock.production.lot to know when this lot was watered (maybe a computed field?)
-  * add a button on stock.production.lot to create and link a new record of flower.water (Use fields.Date.today())
-  * add a constraint on stock.production.lot to prevent the user from watering before they're supposed to (compare the last watering date with the watering frequency)
-  * for more convenience, add a server action that automatically attempts to water all selected plants in a list view
+Make sure to follow Sally's instructions:
+- paper size 7.5x7.5 cm
+- first page should display the company name
+- each flower should start in a new page
+- each flower should have its name, its sceintific name, its watering frequency, and watering amount
