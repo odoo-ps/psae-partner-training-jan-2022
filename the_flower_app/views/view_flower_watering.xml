@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="view_flower_watering_tree" model="ir.ui.view">
+            <field name="name">flower.watering.tree</field>
+            <field name="model">flower.watering</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

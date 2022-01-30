@@ -1,0 +1,71 @@
+<odoo>
+    <data>
+        <record id="view_my_awesome_model_form" model="ir.ui.view">
+            <field name="model">product.product</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button string="Plants" type="object"
+                            name="action_open_product_lot"
+                            attrs="{'invisible': [('tracking', '=', 'none')]}"
+                            class="oe_stat_button" icon="fa-pagelines"/>
+                </header>
+
+                <div name="button_box" position="replace"/>
+
+                <h1 position="after">
+                    <h4><em><field name="scientific_name" placeholder="Scientific Name"/></em></h4>
+                </h1>
+
+                <xpath expr="//notebook/*" position="before">
+                    <page string="Flower">
+                        <group>
+                            <group>
+                                <field name="watering_frequency"/>
+                                <field name="watering_amount_ml"/>
+                            </group>
+                            <group>
+                                <field name="season_start"/>
+                                <field name="season_end"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="domain">[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('is_flower', '=', True)]</attribute>
+                </xpath>
+            </field>
+        </record>
+<!--        domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"-->
+        <!--        <record id="view_my_awesome_model_tree" model="ir.ui.view">-->
+        <!--            <field name="name">flower.flower.tree</field>-->
+        <!--            <field name="model">product.flower</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <tree>-->
+        <!--                    <field name="name"/>-->
+        <!--                    <field name="scientific_name"/>-->
+        <!--                </tree>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <record id="action_view_my_awesome_model" model="ir.actions.act_window">
+            <field name="name">Flowers</field>
+            <field name="res_model">product.product</field>
+            <field name="view_ids" eval="[(5,0,0),
+                   (0, 0, {'view_mode': 'tree', 'view_id': ref('product.product_product_tree_view')}),
+                   (0, 0, {'view_mode': 'form', 'view_id': ref('the_flower_app.view_my_awesome_model_form')})]"/>
+            <field name="domain">[('is_flower', '=', True)]</field>
+            <field name="context">{'default_is_flower': True}</field>
+        </record>
+
+        <menuitem id="flowers_app_root" name="Flowers" action="action_view_my_awesome_model"/>
+    </data>
+</odoo>
