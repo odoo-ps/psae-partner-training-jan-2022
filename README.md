@@ -11,9 +11,8 @@ she wants to have a list tracking all the watering she have done.
 
 Hints:
   * find the model responsible for serial numbers
-  * add a button that uses a window action to show the user all stock.quant records that are linked to this product
   * create a new model for tracking watering flower.water
-  * implement some mechanism on stock.quant to know when this quant was watered (maybe a computed field?)
-  * add a button on stock.quant to create and link a new record of flower.water (Use fields.Date.today())
-  * add a constraint on stock.quant to prevent the user from watering before they're supposed to (compare the last watering date with the watering frequency)
+  * implement some mechanism on stock.production.lot to know when this lot was watered (maybe a computed field?)
+  * add a button on stock.production.lot to create and link a new record of flower.water (Use fields.Date.today())
+  * add a constraint on stock.production.lot to prevent the user from watering before they're supposed to (compare the last watering date with the watering frequency)
   * for more convenience, add a server action that automatically attempts to water all selected plants in a list view
