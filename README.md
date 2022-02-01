@@ -1,13 +1,10 @@
 # psae-partner-training-jan-2022
 
-# The Flower App 5
+# The Flower App 6
 
-Sally have now wants to print a small booklet containing infomation about the flowers she's selling. 
+Sally finds the watering record system a bit inconvenient. She wants the following changes:
 
-Create a report on sale.order that compiles the information of each flower present in the current order. 
-
-Make sure to follow Sally's instructions:
-- paper size 7.5x7.5 cm
-- first page should display the company name
-- each flower should start in a new page
-- each flower should have its name, its sceintific name, its watering frequency, and watering amount
+- only users with group "gardner" should be able to water the plants
+- If a plant some lots that need watering, the 'product.template' form view should have a red ribbon 
+"NEEDS WATERING"
+- The serial number of flowers should be drawn from a sequence stored on the product itself
