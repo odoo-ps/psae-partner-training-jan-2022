@@ -1,0 +1,80 @@
+<odoo>
+    <!--    <template id="reusable">-->
+    <!--        <div>-->
+    <!--            I will appear after this: <t t-out="0"/> <br/>-->
+    <!--            Value is: <t t-out="value"/>-->
+    <!--        </div>-->
+    <!--    </template>-->
+
+    <template id="report_table_age_header">
+        <tr>
+            <th>Name</th>
+            <th>Sale Total</th>
+            <th>DOB</th>
+            <th>Age</th>
+            <th/>
+        </tr>
+    </template>
+
+    <template id="report_table_age_row">
+        <tr>
+            <t t-set="is_underage" t-value="doc.age and doc.age &lt; 18"/>
+            <td t-out="doc.name"/>
+            <td t-out="sum(doc.sale_order_ids.mapped('amount_total'))"/>
+            <td t-out="doc.dob or '-'"/>
+            <td t-out="doc.age or '-'"/>
+            <td t-out="'UNDERAGE' if is_underage else ''"
+                t-att-style="'background: red; color: white;' if is_underage else ''"/>
+        </tr>
+    </template>
+
+
+    <template id="report_res_partner_age">
+
+        <!--        <t t-call="qweb_partner.reusable">-->
+        <!--            <p>Hello World!</p>-->
+        <!--            <t t-set='value' t-value='42'/>-->
+        <!--        </t>-->
+        <t t-call="web.html_container">
+            <style>
+                table {
+                border-collapse: collapse;
+                width: 100%;
+                }
+
+                th, td {
+                text-align: left;
+                padding: 8px;
+                }
+
+                tr:nth-child(even){background-color: #f2f2f2}
+
+                th {
+                background-color: #04AA6D;
+                color: white;
+                }
+            </style>
+            <div>Total Sales: <t t-out="sum(docs.mapped('sale_order_ids.amount_total'))"/></div>
+            <div>Count Underage: <t t-out="len(docs.filtered(lambda p: p.age and p.age &lt; 18))"/></div>
+            <table>
+                <t t-call="qweb_partner.report_table_age_header"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="doc" t-value="o"/>
+                    <t t-call="qweb_partner.report_table_age_row"/>
+                </t>
+            </table>
+            <script>
+                var myvar = <t t-out="json.dumps(docs.read(['name']))"/>
+            </script>
+        </t>
+    </template>
+
+    <record id="action_partner_age_report" model="ir.actions.report">
+        <field name="name">Ages Report</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">qweb_partner.report_res_partner_age</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
