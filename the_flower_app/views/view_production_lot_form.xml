@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="view_production_lot_form" model="ir.ui.view">
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="action_water" type="object" string="Water" icon="fa-tint"
+                                attrs="{'invisible': [('is_flower', '=', False)]}" groups="the_flower_app.group_gardner"/>
+                    </header>
+                </xpath>
+
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <field name="watering_ids" invisible="1"/>
+                    <field name="is_flower" invisible="1"/>
+                    <button string="History" type="object"
+                            name="action_show_watering_history"
+                            attrs="{'invisible': ['|', ('watering_ids', '=', False), ('is_flower', '=', False)]}"
+                            class="oe_stat_button" icon="fa-tint"/>
+                </xpath>
+
+                <xpath expr="//div[@name='button_box']" position="after">
+                    <h2 class="w-100 text-center text-danger" attrs="{'invisible': [('is_flower', '=', False)]}">
+                        Last Watering
+                        <field name="last_watering_date" />
+                    </h2>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

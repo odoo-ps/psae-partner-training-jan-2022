@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="group_gardner" model="res.groups">
+            <field name="name">Gardener</field>
+            <field name="category_id" ref="base.module_category_inventory_inventory"/>
+            <field name="implied_ids" eval="[(4, ref('stock.group_stock_user'))]"/>
+        </record>
+
+        <record id="stock.group_stock_manager" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('group_gardner'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+    <template id="product" inherit_id="website_sale.product">
+        <xpath expr="//span[@t-field='product.name']" position="after">
+            <t t-if="product.scientific_name">(<span t-field="product.scientific_name"/>)</t>
+        </xpath>
+
+        <xpath expr="//h1[@t-field='product.name']" position="after">
+            <em><h5 t-field="product.scientific_name" t-if="product.scientific_name">Flower Scientific Name</h5></em>
+            <ul t-if="product.is_flower">
+                <li>Watering: <em t-esc="product.watering_amount_ml"/><em>mL</em> every <em t-esc="product.watering_amount_ml"/> days</li>
+                <t t-set="season_start" t-value="product.season_start.strftime('%d/%b')"/>
+                <t t-set="season_end" t-value="product.season_end.strftime('%d/%b')"/>
+                <li>Season: <em t-esc="season_start"/> -> <em t-esc="season_end"/></li>
+            </ul>
+        </xpath>
+    </template>
+</odoo>

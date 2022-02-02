@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record model="ir.rule" id="ir_values_allowed_users">
+            <field name="name">Only Gardeners Could View Plants</field>
+            <field name="model_id" ref="stock.model_stock_production_lot" />
+            <field name="domain_force">[(1,'=',1)] if user.user_has_groups('the_flower_app.group_gardner') else [(0,"=",1)] </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<odoo>
+    <template id="report_flower_booklet">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <h2 t-out="doc.company_id.name"/>
+                </div>
+                <div t-foreach="doc.order_line"
+                     t-as="line"
+                     t-if="line.product_id.is_flower"
+                     class="page h-100 w-100"
+                     t-attf-style="
+                        page-break-before: always;
+                     "
+                >
+                    <div t-attf-style="
+                        height: 35mm;
+                        background: url('data:image/png;base64,#{line.product_id.image_128}');
+                        background-repeat: no-repeat;
+                     "/>
+                    <t t-set="product" t-value="line.product_id"/>
+                    <h3 t-out="product.name"/>
+                    <em><h4 t-out="product.scientific_name"/></em>
+                    <p>
+                        Provide <strong t-out="product.watering_amount_ml"/> ml every <strong
+                            t-out="product.watering_frequency"/> days
+                    </p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_flower_booklet" model="ir.actions.report">
+        <field name="name">Flower Booklet</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">the_flower_app.report_flower_booklet</field>
+        <!--        <field name="report_file">base.report_irmodulereference</field>-->
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="paperformat_id" ref="paperformat_booklet"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
